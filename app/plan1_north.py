@@ -132,8 +132,18 @@ def get_angle_degree(pt_dict_1, pt_dict_2):
     angle_rad = abs(math.atan(m1) - math.atan(m2))
     angle_deg = angle_rad * 180 / PI
     angle_deg = round(angle_deg, 2)
+            # For quadrants distribution
+    if (pt_dict_2['x1'] > pt_dict_2['x0'] ) & (pt_dict_2['y1'] > pt_dict_2['y0']):
+        print("Q2")
+        angle_deg = 180 - abs(angle_deg)
+    elif (pt_dict_2['x1'] > pt_dict_2['x0'] ) & (pt_dict_2['y1'] < pt_dict_2['y0']):
+        print("Q3")
+        angle_deg = 180 + abs(angle_deg)
+    elif (pt_dict_2['x1'] < pt_dict_2['x0'] ) & (pt_dict_2['y1'] < pt_dict_2['y0']):
+        print("Q4")
+        angle_deg = 360 - abs(angle_deg)
+    print(angle_deg)
     return angle_deg
-
 
 @app.callback(
     Output("annotations-data_1", "children"),
